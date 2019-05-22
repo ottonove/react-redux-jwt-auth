@@ -10,19 +10,19 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const { user, users } = this.props;
+        const { p_user_, users } = this.props;
         return (
             <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstName}!</h1>
+                <h1>Hi {p_user_.firstName}!</h1>
                 <p>You're logged in with React & JWT!!</p>
                 <h3>Users from secure api end point:</h3>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}
                 {users.items &&
                     <ul>
-                        {users.items.map((user, index) =>
-                            <li key={user.id}>
-                                {user.firstName + ' ' + user.lastName}
+                        {users.items.map((p_user_, index) =>
+                            <li key={p_user_.id}>
+                                {p_user_.firstName + ' ' + p_user_.lastName}
                             </li>
                         )}
                     </ul>
@@ -37,9 +37,9 @@ class HomePage extends React.Component {
 
 function mapStateToProps(state) {
     const { users, authentication } = state;
-    const { user } = authentication;
+    const { p_user_ } = authentication;
     return {
-        user,
+        p_user_,
         users
     };
 }

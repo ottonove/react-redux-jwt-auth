@@ -16,17 +16,17 @@ function login(username, password) {
 
     return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+        .then(_user_=> {
+            // store _user_details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('_user_', JSON.stringify(_user_));
 
-            return user;
+            return _user_;
         });
 }
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.removeItem('_user_');
 }
 
 function getAll() {

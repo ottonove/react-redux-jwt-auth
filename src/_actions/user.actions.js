@@ -11,12 +11,14 @@ export const userActions = {
 
 function login(username, password) {
     return dispatch => {
-        dispatch(request({ username }));
+
+        //dispatch(request({ username }));
+        //これは何のため？　コメントアウトしても動くけど？。
 
         userService.login(username, password)
             .then(
-                user => { 
-                    dispatch(success(user));
+                return_user => { 
+                    dispatch(success(return_user));
                     history.push('/');
                 },
                 error => {
@@ -26,8 +28,10 @@ function login(username, password) {
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+    function request(param_user) { return { type: userConstants.LOGIN_REQUEST, param_user } }
+    function success(login_user) { return { type: userConstants.LOGIN_SUCCESS, login_user } }
+        // src\_reducers\authentication.reducer.js  _user_: action.login_user
+        // 渡し先のstate.authenticationは、login_userというkey名で受け取るので、ここの引数名もlogin_userに合わせる。
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
